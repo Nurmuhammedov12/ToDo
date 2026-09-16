@@ -60,20 +60,20 @@ export default function App() {
     return true;
   });
 
-  const labels = { all: "Все", active: "Активные", done: "Выполненные" };
+  const labels = { all: "All", active: "Active", done: "Done" };
 
   return (
     <main className="container">
-      <h1>📋 Мои задачи</h1>
+      <h1>📋 My ToDo List</h1>
 
       <div className="add-row">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && addTask()}
-          placeholder="Что нужно сделать?"
+          placeholder="What you need to do?"
         />
-        <button onClick={addTask}>Добавить</button>
+        <button onClick={addTask}>Add</button>
       </div>
 
       <div className="filters">
@@ -121,7 +121,7 @@ export default function App() {
         ))}
       </ul>
 
-      {visible.length === 0 && <p className="empty">Задач нет</p>}
+      {visible.length === 0 && <p className="empty">Empty</p>}
     </main>
   );
 }
