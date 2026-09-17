@@ -14,7 +14,7 @@ pipeline {
             }
         }
 
-        stage("build image for frontend"){
+        stage("build image for frontend/backend"){
             input {
             message "Deploy which version?"
             ok "Deploy"
