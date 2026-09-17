@@ -8,7 +8,7 @@ pipeline {
     parameters {
         choice(
             name:'IMAGE_NAME',
-            choices: ['nurmuhammedowyhlas/todo-app:jma-3.0', 'nurmuhammedowyhlas/todobackend:jma-2.0'],
+            choices: ['nurmuhammedowyhlas/todo-app:jma-4.0', 'nurmuhammedowyhlas/todobackend:jma-3.0'],
             description: 'Which Image Name'
         )
         choice(
@@ -28,7 +28,7 @@ pipeline {
         }
         stage("build image for frontend"){
             when{
-                expression {params.IMAGE_NAME == 'nurmuhammedowyhlas/todo-app:jma-3.0' && params.LOCATION == 'frontend'}
+                expression {params.IMAGE_NAME == 'nurmuhammedowyhlas/todo-app:jma-4.0' && params.LOCATION == 'frontend'}
             }
             steps {
                 script{
@@ -40,7 +40,7 @@ pipeline {
             }
         stage("build image for backend"){
             when{
-                expression {params.IMAGE_NAME == 'nurmuhammedowyhlas/todobackend:jma-2.0' && params.LOCATION == 'backend'}
+                expression {params.IMAGE_NAME == 'nurmuhammedowyhlas/todobackend:jma-3.0' && params.LOCATION == 'backend'}
             }
             steps {
                 script{
