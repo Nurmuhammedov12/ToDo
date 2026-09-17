@@ -27,6 +27,9 @@ pipeline {
             }
         }
         stage("build image for frontend"){
+            when{
+                expression {params.IMAGE_NAME == 'nurmuhammedowyhlas/todo-app:jma-3.0' && params.LOCATION == 'frontend'}
+            }
             steps {
                 script{
                  buildImage(params.IMAGE_NAME, params.LOCATION) 
@@ -35,16 +38,19 @@ pipeline {
                 }
 
             }
-        }
         stage("build image for backend"){
+            when{
+                expression {params.IMAGE_NAME == 'nurmuhammedowyhlas/todobackend:jma-2.0' && params.LOCATION == 'backend'}
+            }
             steps {
                 script{
-                    buildImage(params.IMAGE_NAME, params.LOCATION) 
-                    dockerLogin()
-                    dockerPush(params.IMAGE_NAME)
+                 buildImage(params.IMAGE_NAME, params.LOCATION) 
+                 dockerLogin()
+                 dockerPush(params.IMAGE_NAME)
                 }
 
             }
+
         }
 
         stage("deploy"){
