@@ -1,7 +1,22 @@
+#!/user/bin/env groovy
+
+@Library('jenkins-shared-library')
 def gv
 
 pipeline {
     agent any
+    parameters {
+        choice(
+            name:'IMAGE_NAME',
+            choices: ['nurmuhammedowyhlas/todo-app:jma-3.0', 'nurmuhammedowyhlas/todobackend:jma-2.0'],
+            description: 'Which Image Name'
+        )
+        choice(
+            name:'LOCATION',
+            choices: ['frontend', 'backend'],
+            description: 'choose location'
+        )
+    }
     
     stages {
         stage("init"){
@@ -14,7 +29,9 @@ pipeline {
         stage("build image for frontend"){
             steps {
                 script{
-                   gv.buildImageFrontend()
+                 buildImage(params.IMAGE_NAME, params.LOCATION) 
+                 dockerLogin()
+                 dockerPush(params.IMAGE_NAME)
                 }
 
             }
@@ -22,7 +39,9 @@ pipeline {
         stage("build image for backend"){
             steps {
                 script{
-                   gv.buildImageBackend()
+                    buildImage(params.IMAGE_NAME, params.LOCATION) 
+                    dockerLogin()
+                    dockerPush(params.IMAGE_NAME)
                 }
 
             }
