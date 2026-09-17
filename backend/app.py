@@ -120,7 +120,7 @@ def delete_task(task_id):
             deleted = cur.rowcount
         conn.commit()
     if deleted == 0:
-        return jsonify({"error": "Задача не найдена"}), 404
+        return jsonify({"error": "Error 404"}), 404
     return "", 204
 
 
