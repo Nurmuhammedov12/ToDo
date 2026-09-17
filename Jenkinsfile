@@ -11,14 +11,23 @@ pipeline {
                 }
             }
         }
-        stage("build image"){
+        stage("build image for frontend"){
             steps {
                 script{
-                   gv.buildImage()
+                   gv.buildImageFrontend()
                 }
 
             }
         }
+        stage("build image for backend"){
+            steps {
+                script{
+                   gv.buildImageBackend()
+                }
+
+            }
+        }
+
         stage("deploy"){
             steps{
                 script{
