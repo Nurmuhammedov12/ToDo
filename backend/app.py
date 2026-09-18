@@ -76,6 +76,8 @@ def create_task():
     title = (data.get("title") or "").strip()
     if not title:
         return jsonify({"error": "Название не может быть пустым"}), 400
+    if len(title) > 255:
+        return jsonify({"error": "too long. try to be clearer (max. 255)"}), 400
     with get_conn() as conn:
         with conn.cursor() as cur:
             cur.execute("INSERT INTO tasks (title) VALUES (%s) RETURNING *", (title,))
