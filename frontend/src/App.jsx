@@ -101,7 +101,7 @@ export default function App() {
                   onKeyDown={(e) => e.key === "Enter" && saveEdit(task.id)}
                 />
                 <button onClick={() => saveEdit(task.id)}>💾</button>
-                <button onClick={() => setEditingId(null)}>✕</button>
+                <button onClick={() => setEditingId(null)}>X</button>
               </>
             ) : (
               <>
