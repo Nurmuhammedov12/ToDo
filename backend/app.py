@@ -101,6 +101,8 @@ def update_task(task_id):
                 new_title = (data.get("title") or "").strip()
                 if not new_title:
                     return jsonify({"error": "Название не может быть пустым"}), 400
+                if len(new_title) > 255:
+                    return jsonify({"error": "too long. try to be clearer (max. 255)"}), 400
                 task["title"] = new_title
             if "done" in data:
                 task["done"] = bool(data["done"])

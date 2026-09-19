@@ -52,3 +52,4 @@ li input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
 .delete:hover { background: #fee2e2; }
 
 .empty { text-align: center; color: #999; padding: 20px; }
+.error { color: #e11d48; margin: -8px 0 16px; font-size: 0.9em; }
